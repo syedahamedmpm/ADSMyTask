@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { Progress,Button } from 'reactstrap';
 
 
 class App extends React.Component{
@@ -8,7 +7,8 @@ constructor(){
 	super()
 	this.state={
 		progressPercentText:0,
-		validationErrors:{}
+		validationErrors:{},
+		progressPercent:0
 	}
 }
 handleOnChange = (event)=>{
@@ -23,7 +23,7 @@ handleOnClick=()=>{
 		errors['progressPercentText']='Please Choose Under 100' 
 		
 		this.setState({
-		progressPercent:'',
+		progressPercent:0,
 		validationErrors:errors
 	})
 	}
@@ -49,14 +49,15 @@ value={this.state.progressPercentText}
 <span className="error">{progressPercentTextError}</span>
 </div>
 <div className="col-md-6">
-<Button color="primary" onClick={this.handleOnClick}k>Submit</Button>
+<button className="btn btn-primary" onClick={this.handleOnClick}>Submit</button>
 </div>
 </div>
 <div className="mt-20">
-<Progress
-  animated
-  value={this.state.progressPercent}
-/>
+<div class="progress">
+    <div className="progress-bar" role="progressbar" aria-valuenow={this.state.progressPercent} aria-valuemin="0" aria-valuemax="100" style={{width:`${this.state.progressPercent}%`}}>
+      <span className="sr-only">{this.state.progressPercent}% Complete</span>
+    </div>
+  </div>
 
 </div>
 </div>
